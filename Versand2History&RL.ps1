@@ -1,8 +1,8 @@
 ## Verzeichnisse
 # Verzeichnis in der die IST_RUECK_VOM...Datei von der Abholung liegt
-$Directory = "C:\Users\dunca\Desktop\LA\Versand\FTP\"
+$Directory = "C:\Users\dunca\Desktop\LA\Versand\FTP\" ## Verzeichnis muss für die eigenen Bedürfnisse angepasst werden
 # verzeichnis, für LISSA
-$RLDir = "C:\Users\dunca\Desktop\LA\RL\Einnahmen"
+$RLDir = "C:\Users\dunca\Desktop\LA\RL\Einnahmen" ## Verzeichnis muss für die eigenen Bedürfnisse angepasst werden
 
 ## Dateien
 # tatsächliche Datei, es ist von auszugehen, dass immer nur eine Datei in dem Verzeichnis vorliegt
@@ -16,7 +16,8 @@ $year = $shorter.Substring(0,4)
 # selbes wie bei Jahr nur für Monat
 $month = $shorter.Substring(4,2)
 # Verzeihnis, in das die alten Rechenläufe kommen
-$historyDir = "C:\Users\dunca\Desktop\LA\history\$year\$month\"
+## Verzeichnis muss für die eigenen Bedürfnisse angepasst werden und am Ende $year/$month passend zu Ihren Anforderungen angefügt werden
+$historyDir = "C:\Users\dunca\Desktop\LA\history\$year\$month\" 
 
 ## Ausführung
 # Archivierung der tatsächlichen Rechenlaufsdatei
