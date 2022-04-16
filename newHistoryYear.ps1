@@ -1,4 +1,4 @@
-$Directory = "C:\Users\dunca\Desktop\LA\history"
+$Directory = "./LA\history"
 
 $year = Read-Host -Prompt 'Input the year to create a new history directory for this year'
 
