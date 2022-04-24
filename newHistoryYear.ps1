@@ -19,15 +19,12 @@ if($year.Length -cne 4) {
     echo "please enter a valid year with is not $year, example is: 2021, 2022, ..."
     pause
     exit
-
 }
 
 ## Wenn die Usereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
 else {
-    New-Item -Path $Directory -Name $year -ItemType "directory" 
-
+    New-Item -Path $Directory -Name $year -ItemType "directory"
     $subdir = "$Directory\$year"
-
     For ($i=1; $i -lt 13; $i++) {
         if($i -lt 10) {
             $zero2nine = "0$i"
