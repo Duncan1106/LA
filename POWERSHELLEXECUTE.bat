@@ -1,7 +1,7 @@
 ## Batch File um die Powershell Scripte in eingescghränkten Umgebungen uneingeschränkt ausführen zu können
 @echo off
-echo "Druecke 1 für automatisches Kopieren und umbenennen der Dateie, für die Erstellung "
-echo "eines neues Jahresverzeichnisses , 2 und 3 um das Programm zu beenden""
+echo " Druecke 1 fuer Versand2History%RL, 2 fuer newHistoryYear Verzeichnis"
+echo " und 3 um das Programm zu beenden""
 :0
 CHOICE /N /C 123 /M "Waehle [1], [2] oder [3]"
 
