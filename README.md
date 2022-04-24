@@ -22,15 +22,13 @@ Skript zur Automtisierung im LA
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
 Eine kleine Rückmeldung freuen. 
 
-Für weitere Automatisationen bin ich gerne bereit und habe
-einfach dabei Spaß.
+Für weitere Automatisationen bin ich gerne bereit, da mir das einfach Spaß macht.
 
 Solange es die Arbeit im LA dadurch etwas einfacher wird und 
-mögliche Fehler durch den Menschen vermieden werden können, soll 
-mir das Recht sein.
+mögliche Fehler durch den Menschen vermieden werden können, bin ich absolut zufrieden.
   
-Ich Stelle mich auch gerne zur Verfügung, das Skript, das bisher zur
+Ich stelle mich auch gerne zur Verfügung, das Skript, das bisher zur
 Erstellung der Datei in der Abholung führte, zu dokumentieren und nach Absprache
-zu verbessern.
+zu verbessern, bzw. zu korrigieren.
   
   
