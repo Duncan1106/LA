@@ -1,5 +1,5 @@
 LA Automationsskripte
-Skript zur Automtisierung im LA
+Skript zur Automatisierung  im LA
 
 1. Script: versand2history&RL.ps1
   Kopieren der Datei für Lissa nach der Abholung in das
@@ -11,8 +11,8 @@ Skript zur Automtisierung im LA
 
 
 2. Script: newHistoryFolder.ps1
-  Erstellen einer Ordnerstruktur nach den momentanen Aufbau:
-  Jahr/
+  Erstellen einer Ordnerstruktur nach dem momentanen Aufbau:
+  Jahr /
     - Unterordner: 01 - 12 
   Dabei wird das Jahr als Eingabe von Benutzer erwartet.
   Diese wird nur akzeptiert, sofern das Jahr in der Zukunft liegt.
@@ -20,7 +20,7 @@ Skript zur Automtisierung im LA
 
 
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
-Eine kleine Rückmeldung freuen. 
+eine kleine Rückmeldung freuen. 
 
 Für weitere Automatisationen bin ich gerne bereit, da mir das einfach Spaß macht.
 
