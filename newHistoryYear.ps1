@@ -14,7 +14,7 @@ if ($year -le $dYear) {
     exit
 }
 
-## Überprüfen, ob das angebenen Jahr ein valides Jahr ist, heißt glecih 4 Zeichen lang ist
+## Überprüfen, ob das angebenen Jahr ein valides Jahr ist, heißt gleich 4 Zeichen lang ist
 if($year.Length -cne 4) {
     echo "please enter a valid year with is not $year, example is: 2021, 2022, ..."
     pause
