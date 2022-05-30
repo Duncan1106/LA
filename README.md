@@ -20,9 +20,8 @@ Skript zur Automatisierung  im LA
 3. CLI_GUI.ps1
   Kommandozeilen Interface, für den Benutzer.
   Ruft nach Auswahl das jeweilige Script auf.
-    Option auf Löschung der Ursprungsdatei, wird an 
-    1. Script üpbergeben.
-    Die Jahreszahl für das 2. Script wird auch hier erfasst und übergeben
+    - Option auf Löschung der Ursprungsdatei, wird an 1. Script üpbergeben.
+    - Die Jahreszahl für das 2. Script wird auch hier erfasst und übergeben
 
 
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
