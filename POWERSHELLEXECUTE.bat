@@ -11,7 +11,7 @@ IF %ERRORLEVEL% == 3 GOTO 3
 
 :1
 echo "Ausfüren des Versand2History&RL Scriptes"
-PowerShell.exe -ExecutionPolicy Unrestricted -command "./versand2historyAndRL.ps1" ## Verzeichnis muss angepaast werden
+PowerShell.exe -WindowStyle hidden -ExecutionPolicy Unrestricted -command "./versand2historyAndRL.ps1" ## Verzeichnis muss angepaast werden
 GOTO end
 pause
 exit
