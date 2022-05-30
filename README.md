@@ -17,6 +17,12 @@ Skript zur Automatisierung  im LA
   Dabei wird das Jahr als Eingabe von Benutzer erwartet.
   Diese wird nur akzeptiert, sofern das Jahr in der Zukunft liegt.
 
+3. CLI_GUI.ps1
+  Kommandozeilen Interface, für den Benutzer.
+  Ruft nach Auswahl das jeweilige Script auf.
+    Option auf Löschung der Ursprungsdatei, wird an 
+    1. Script üpbergeben.
+    Die Jahreszahl für das 2. Script wird auch hier erfasst und übergeben
 
 
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
