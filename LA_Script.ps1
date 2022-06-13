@@ -21,9 +21,8 @@ Function VersandAndHistory {
     ## Dateien
     #tatsaechliche Datei, es ist von auszugehen, dass immer nur eine Datei in dem Verzeichnis vorliegt
     $textfile = Get-ChildItem -Path $Directory
+    
     # kuerzen des dateinames auf Format yyyymmddhhmmss(kompletter Zeitstempel)
-
-    ## Verarbeitung
     $shorted=$textfile.Name.Substring(14,6)
     # erhalte das Jahr fuer die Einsortierung in die dafuer vorhandene Ordnerstruktur
     $year = $shorted.Substring(0,4)
@@ -47,8 +46,7 @@ Function VersandAndHistory {
     else {
         Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
     }
-    ## Zurueck zum Hauptmenue
-    write-host "Versand und Archivierungs SKript ausgefuehrt!"
+    write-host "Versand und Archivierungs Skript ausgefuehrt!"
 }
 
 Function NewHistoryDirectory {
@@ -73,7 +71,7 @@ Function NewHistoryDirectory {
         write-Host "Bitte gib ein valides Jahr ein, nicht $year, zum Beispiel: $dyear, $dyear2, ..."
     }
 
-    ## Wenn die Usereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
+    ## Wenn die Benutzereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
     else {
         New-Item -Path $Directory -Name $year -ItemType "directory"
         $subdir = "$Directory\$year"
@@ -90,13 +88,13 @@ Function NewHistoryDirectory {
     }
 }
 
-## visable Menu for user
+## GUI für den Benutzer
 Write-Host "================== LA Skript ==================" -ForegroundColor Cyan
 Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
 Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
 Write-Host "Q: Q um das Skript zu beenden."
 
-$input = (Read-Host "Bitte waehle").ToUpper()
+$input = (Read-Host "Bitte waehle: ").ToUpper()
 
 switch ($input)
 {
