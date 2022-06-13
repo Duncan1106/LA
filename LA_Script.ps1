@@ -2,22 +2,21 @@
 ##   @Author Duncan1106   ##
 ## ====================== ##
 
-Write-Host "===================================="
-Write-Host "============ LA Skript ============="
-Write-Host "===================================="
-Write-Host "========== by Duncan1106 ==========="
-Write-Host "===================================="
+Write-Host "====================================" -ForegroundColor Green
+Write-Host "============ LA Skript =============" -ForegroundColor Green
+Write-Host "====================================" -ForegroundColor Green
+Write-Host "========== by Duncan1106 ===========" -ForegroundColor Green
+Write-Host "====================================" -ForegroundColor Green
 
 Function VersandAndHistory {
     Write-Host " "
-    write-host "Do you want the original File deleted? y for deleting and n for keeping"
+    write-host "Soll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
     $deleteoption = (Read-Host)
     ## Verzeichnisse
     # Verzeichnis in der die IST_RUECK_VOM...Datei von der Abholung liegt
     $Directory = ".\Versand\FTP\"## Verzeichnis muss fuer die eigenen Beduerfnisse angepasst werden
     # verzeichnis, fuer LISSA
     $RLDir =".\RL\Einnahmen\" ## Verzeichnis muss fuer die eigenen Beduerfnisse angepasst werden
-    # Name und Pfad der GUI
     
     ## Dateien
     #tatsaechliche Datei, es ist von auszugehen, dass immer nur eine Datei in dem Verzeichnis vorliegt
@@ -43,19 +42,19 @@ Function VersandAndHistory {
     ## Optionale Loeschung der Ursprungsdatei
     if ($deleteoption -cmatch "y") {
         Remove-Item -Path $Directory\$textfile -Force
-        Write-Host "deleted the original File"
+        Write-Host "Erfolgreiche Löschung der Originaldatei"
     }
     else {
-        Write-Host "kept the original File, needs to be deleted, before executing this script another time"
+        Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
     }
     ## Zurueck zum Hauptmenue
-    write-host "Versand And History Script executed!"
+    write-host "Versand und Archivierungs SKript ausgefuehrt!"
 }
 
 Function NewHistoryDirectory {
     Write-Host " "
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "Please enter a year, for wich you want to create that folder"
+    write-host "Bitte gib ein Jahr ein, für das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
     
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
@@ -67,11 +66,11 @@ Function NewHistoryDirectory {
     ##Benutzer Eingaben Ueberpruefung
     # Ueberpruefen, ob das angegebene Jahr kleiner als oder gleich dem aktuellen Jahr ist
     if ($year -lt $dYear) {
-        write-Host "please enter a year that is in the future or the present, the past years should allready exist"
+        write-Host "Bitte gib ein Jahr ein, das in der Zukunft liegt, vergangene Jahre existieren schon"
     }
     ## Ueberpruefen, ob das angebenen Jahr ein valides Jahr ist, heisst gleich 4 Zeichen lang ist
     if($year.Length -cne 4) {
-        write-Host "please enter a valid year which is not $year, example is: $dyear, $dyear2, ..."
+        write-Host "Bitte gib ein valides Jahr ein, nicht $year, zum Beispiel: $dyear, $dyear2, ..."
     }
 
     ## Wenn die Usereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
@@ -87,23 +86,23 @@ Function NewHistoryDirectory {
                 New-Item -Path $subdir -Name $i -ItemType "directory"
             }
         }
-        write-host "History Script executed!"
+        write-host "Archivierungsstrukturskript ausgefuehrt!"
     }
 }
 
 ## visable Menu for user
-Write-Host "================== Menu Title ==================" -ForegroundColor Cyan
-Write-Host "1: Enter 1 to execute the versand and history script"
-Write-Host "2: Enter 2 to execute the history folder creation script"
-Write-Host "Q: Enter Q to quit."
+Write-Host "================== LA Skript ==================" -ForegroundColor Cyan
+Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
+Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
+Write-Host "Q: Q um das Skript zu beenden."
 
-$input = (Read-Host "Please make a selection").ToUpper()
+$input = (Read-Host "Bitte waehle").ToUpper()
 
 switch ($input)
 {
-    '1' {VersandAndHistory}    ### Input the name of the function you want to execute when 1 is entered
-    '2' {NewHistoryDirectory}    ### Input the name of the function you want to execute when 2 is entered
-    'Q' {Write-Host "The script has been terminated" -BackgroundColor Red -ForegroundColor White}
-    Default {Write-Host "Your selection = $input, is not valid. Please try again." -BackgroundColor Red -ForegroundColor White}
+    '1' {VersandAndHistory}
+    '2' {NewHistoryDirectory}
+    'Q' {Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White}
+    Default {Write-Host "Deine Wahl $input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
 }
 pause
