@@ -1,39 +1,33 @@
 LA Automationsskripte
 Skript zur Automatisierung  im LA
 
-1. Script: versand2history&RL.ps1
-  Kopieren der Datei für Lissa nach der Abholung in das
-  entsprechend Verzeichnis und Umbenennung der Datei in den
-  für Lissa verständlichen Dateinamen, sowie automatische
-  Einsortierung zur Aufbewahrung der Originaldatei nach der Abholung
-  in einen existierenden Unterordner, z.B. 2021/12 für den Dezember des Jahres 2021
-  Option auf Löschung der Ursprungsdatei in der Abholung, wäre auch denkbar
+Aufbau:
+  1.GUI
+    - Kommandozeilen Interface, für den Benutzer.
+    - Ruft nach Auswahl die jeweilige Funktion auf.
+    
+  2. Versand und Archivierungs Funktion
+    - Nutzer Abfrage, ob die Originaldatei gelöscht werden soll
+    - kopieren der Datei für Lissa nach der Abholung in das
+    entsprechend Verzeichnis und Umbenennung der Datei in den
+    für Lissa verständlichen Dateinamen.
+    - automatische Einsortierung zur Aufbewahrung der Originaldatei in einen existierenden
+    Unterordner, z.B. 2021/12 für den Dezember des Jahres 2021
+ 
+ 3. Neue Archivierungsstruktur
+  - Erstellen einer Ordnerstruktur nach dem momentanen Aufbau:
+    Jahr / Unterordner 01 - 12 
+  - Jahreszahl Eingabe erfolgt durch den Nutzer 
+  - Plausibilitätsprüfung der Nutzereingabe
 
-
-2. Script: newHistoryFolder.ps1
-  Erstellen einer Ordnerstruktur nach dem momentanen Aufbau:
-  Jahr /
-    - Unterordner: 01 - 12 
-  Dabei wird das Jahr als Eingabe von Benutzer erwartet.
-  Diese wird nur akzeptiert, sofern das Jahr in der Zukunft liegt.
-
-3. CLI_GUI.ps1
-  Kommandozeilen Interface, für den Benutzer.
-  Ruft nach Auswahl das jeweilige Script auf.
-    - Option auf Löschung der Ursprungsdatei, wird an 1. Script übergeben.
-    - Die Jahreszahl für das 2. Script wird auch hier erfasst und übergeben
-
-
+========================================================================
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
 eine kleine Rückmeldung freuen. 
 
-Für weitere Automatisationen bin ich gerne bereit, da mir das einfach Spaß macht.
+Für weitere Automatisationen bin ich gerne bereit.
+Wenn die Arbeit im LA durch mein Script vereinfacht wird und 
+menschliche Fehler vermieden werden können, stelle ich mich auch gerne
+für weitere Automatisierungen zur Verfügung.
 
-Solange es die Arbeit im LA dadurch etwas einfacher wird und 
-mögliche Fehler durch den Menschen vermieden werden können, bin ich absolut zufrieden.
-  
-Ich stelle mich auch gerne zur Verfügung, das Skript, das bisher zur
-Erstellung der Datei in der Abholung führte, zu dokumentieren und nach Absprache
-zu verbessern, bzw. zu korrigieren.
-  
-  
+Desweiteren, interessiert mich der Aufbau des bisherigen Scriptes, welches zur Abholung führt.
+Gerne stelle ich mich auch hier zur Verfügung und helfe wo ich kann um das Script zu verbessern und oder zu korrigieren.
