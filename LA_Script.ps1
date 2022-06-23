@@ -8,6 +8,9 @@ Write-Host "====================================" -ForegroundColor Green
 Write-Host "========== by Duncan1106 ===========" -ForegroundColor Green
 Write-Host "====================================" -ForegroundColor Green
 
+# Error catching
+$ErrorActionPreference = "Stop"
+
 Function VersandAndHistory {
     Write-Host " "
     write-host "Soll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
@@ -23,7 +26,7 @@ Function VersandAndHistory {
     $textfile = Get-ChildItem -Path $Directory
     
     # kuerzen des dateinames auf Format yyyymmddhhmmss(kompletter Zeitstempel)
-    $shorted=$textfile.Name.Substring(14,6)
+    $shorted=$textfile.Name.Substring(16,6)
     # erhalte das Jahr fuer die Einsortierung in die dafuer vorhandene Ordnerstruktur
     $year = $shorted.Substring(0,4)
     # selbes wie bei Jahr nur fuer Monat
@@ -33,26 +36,34 @@ Function VersandAndHistory {
     $historyDir = ".\history\$year\$month\" 
 
     ## Ausfuehrung
-    # Archivierung der tatsaechlichen Rechenlaufsdatei
-    Copy-Item $Directory\$textfile $historyDir
-    # kopieren des Rechenlaufes in den fuer LISSA verstaendliche Dateinamen
-    Copy-Item $Directory\$textfile $RLDir\IST_RUECK_LA02_V.txt
+    Try {
+        # Archivierung der tatsaechlichen Rechenlaufsdatei
+        Copy-Item $Directory\$textfile $historyDir
+        # kopieren des Rechenlaufes in den fuer LISSA verstaendliche Dateinamen
+        Copy-Item $Directory\$textfile $RLDir\IST_RUECK_LA02_V.txt
 
-    ## Optionale Loeschung der Ursprungsdatei
-    if ($deleteoption -cmatch "y") {
-        Remove-Item -Path $Directory\$textfile -Force
-        Write-Host "Erfolgreiche Löschung der Originaldatei"
+        ## Optionale Loeschung der Ursprungsdatei
+        if ($deleteoption -cmatch "y") {
+            Remove-Item -Path $Directory\$textfile -Force
+            Write-Host "Erfolgreiche Löschung der Originaldatei"
+        }
+        else {
+            Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
+        }
+        write-host "Versand und Archivierungs Skript ausgefuehrt!"
+        }
+    Catch {
+        Write-Host ""
+        Write-Host $_.Exception.Message -ForegroundColor Red
+        Write-Host $_.ScriptStackTrace
+        Write-Host ""
     }
-    else {
-        Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
-    }
-    write-host "Versand und Archivierungs Skript ausgefuehrt!"
 }
 
 Function NewHistoryDirectory {
     Write-Host " "
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "Bitte gib ein Jahr ein, für das die Ordnerstruktur aufgebaut werden soll"
+    write-host "Bitte gib ein Jahr an, für das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
     
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
@@ -73,18 +84,26 @@ Function NewHistoryDirectory {
 
     ## Wenn die Benutzereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
     else {
-        New-Item -Path $Directory -Name $year -ItemType "directory"
-        $subdir = "$Directory\$year"
-        For ($i=1; $i -lt 13; $i++) {
-            if($i -lt 10) {
-                $zero2nine = "0$i"
-                New-Item -Path $subdir -Name $zero2nine -ItemType "directory"
+        Try{
+            New-Item -Path $Directory -Name $year -ItemType "directory"
+            $subdir = "$Directory\$year"
+            For ($i=1; $i -lt 13; $i++) {
+                if($i -lt 10) {
+                    $zero2nine = "0$i"
+                    New-Item -Path $subdir -Name $zero2nine -ItemType "directory"
+                }
+                else{    
+                    New-Item -Path $subdir -Name $i -ItemType "directory"
+                }
             }
-            else{    
-                New-Item -Path $subdir -Name $i -ItemType "directory"
-            }
+            write-host "Archivierungsstrukturskript ausgefuehrt!"
         }
-        write-host "Archivierungsstrukturskript ausgefuehrt!"
+        Catch {
+            Write-Host ""
+            Write-Host $_.Exception.Message -ForegroundColor Red
+            Write-Host $_.ScriptStackTrace
+            Write-Host ""
+        }
     }
 }
 
