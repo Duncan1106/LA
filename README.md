@@ -20,7 +20,7 @@ Aufbau:
   - Jahreszahl Eingabe erfolgt durch den Nutzer 
   - Plausibilitätsprüfung der Nutzereingabe
 
-========================================================================
+============================================================================
 Falls dieses Skript verwendet werden sollte, würde ich mich über 
 eine kleine Rückmeldung freuen. 
 
