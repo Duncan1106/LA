@@ -44,7 +44,7 @@ Function VersandAndHistory {
         ## Optionale Loeschung der Ursprungsdatei
         if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
-            Write-Host "Erfolgreiche LÃ¶schung der Originaldatei"
+            Write-Host "Erfolgreiche Loeschung der Originaldatei"
         }
         else {
             Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
@@ -61,7 +61,7 @@ Function VersandAndHistory {
 
 Function NewHistoryDirectory {
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "`nBitte gib ein Jahr an, fÃ¼r das die Ordnerstruktur aufgebaut werden soll"
+    write-host "`nBitte gib ein Jahr an, fuer das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
     
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
