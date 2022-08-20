@@ -25,7 +25,7 @@ Function VersandAndHistory {
     $textfile = Get-ChildItem -Path $Directory
     
     # kuerzen des dateinames auf Format yyyymmddhhmmss(kompletter Zeitstempel)
-    $shorted=$textfile.Name.Substring(16,6)
+    $shorted=$textfile.Name.Substring(14,6)
     # erhalte das Jahr fuer die Einsortierung in die dafuer vorhandene Ordnerstruktur
     $year = $shorted.Substring(0,4)
     # selbes wie bei Jahr nur fuer Monat
@@ -44,7 +44,7 @@ Function VersandAndHistory {
         ## Optionale Loeschung der Ursprungsdatei
         if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
-            Write-Host "Erfolgreiche Löschung der Originaldatei"
+            Write-Host "Erfolgreiche LÃ¶schung der Originaldatei"
         }
         else {
             Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
@@ -61,7 +61,7 @@ Function VersandAndHistory {
 
 Function NewHistoryDirectory {
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "`nBitte gib ein Jahr an, für das die Ordnerstruktur aufgebaut werden soll"
+    write-host "`nBitte gib ein Jahr an, fÃ¼r das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
     
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
@@ -104,7 +104,7 @@ Function NewHistoryDirectory {
     }
 }
 
-## GUI für den Benutzer
+## GUI fuer den Benutzer
 Write-Host "`n================== LA Skript ==================" -ForegroundColor Cyan
 Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
 Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
