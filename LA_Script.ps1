@@ -12,8 +12,7 @@ Write-Host "====================================" -ForegroundColor Green
 $ErrorActionPreference = "Stop"
 
 Function VersandAndHistory {
-    Write-Host " "
-    write-host "Soll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
+    write-host "`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
     $deleteoption = (Read-Host)
     ## Verzeichnisse
     # Verzeichnis in der die IST_RUECK_VOM...Datei von der Abholung liegt
@@ -43,7 +42,7 @@ Function VersandAndHistory {
         Copy-Item $Directory\$textfile $RLDir\IST_RUECK_LA02_V.txt
 
         ## Optionale Loeschung der Ursprungsdatei
-        if ($deleteoption -cmatch "y") {
+        if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
             Write-Host "Erfolgreiche Löschung der Originaldatei"
         }
@@ -53,7 +52,7 @@ Function VersandAndHistory {
         write-host "Versand und Archivierungs Skript ausgefuehrt!"
         }
     Catch {
-        Write-Host ""
+        Write-Host "`n"
         Write-Host $_.Exception.Message -ForegroundColor Red
         Write-Host $_.ScriptStackTrace
         Write-Host ""
@@ -61,9 +60,8 @@ Function VersandAndHistory {
 }
 
 Function NewHistoryDirectory {
-    Write-Host " "
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "Bitte gib ein Jahr an, für das die Ordnerstruktur aufgebaut werden soll"
+    write-host "`nBitte gib ein Jahr an, für das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
     
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
@@ -99,16 +97,15 @@ Function NewHistoryDirectory {
             write-host "Archivierungsstrukturskript ausgefuehrt!"
         }
         Catch {
-            Write-Host ""
+            Write-Host "`n"
             Write-Host $_.Exception.Message -ForegroundColor Red
             Write-Host $_.ScriptStackTrace
-            Write-Host ""
         }
     }
 }
 
 ## GUI für den Benutzer
-Write-Host "================== LA Skript ==================" -ForegroundColor Cyan
+Write-Host "`n================== LA Skript ==================" -ForegroundColor Cyan
 Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
 Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
 Write-Host "Q: Q um das Skript zu beenden."
@@ -120,6 +117,6 @@ switch ($input)
     '1' {VersandAndHistory}
     '2' {NewHistoryDirectory}
     'Q' {Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White}
-    Default {Write-Host "Deine Wahl $input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
+    Default {Write-Host "`nDeine Wahl $input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
 }
 pause
