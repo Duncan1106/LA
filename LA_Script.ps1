@@ -3,7 +3,7 @@
 ## ====================== ##
 
 Write-Host "====================================" -ForegroundColor Green
-Write-Host "============ LA Skript =============" -ForegroundColor Green
+Write-Host "====== LA-Automation Skripts =======" -ForegroundColor Green
 Write-Host "====================================" -ForegroundColor Green
 Write-Host "========== by Duncan1106 ===========" -ForegroundColor Green
 Write-Host "====================================" -ForegroundColor Green
