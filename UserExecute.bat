@@ -1,3 +1,3 @@
 @echo off
-powershell.exe -ExecutionPolicy Unrestricted -command "./CLI_GUI.ps1"
+powershell.exe -ExecutionPolicy Unrestricted -command "./LA_Script.ps1"
 exit
