@@ -36,3 +36,8 @@ some scripts and script ideas for automations
 ## Optimizations
 
 try and catch errors for easy user debug and StackTree output if error accoured
+
+##
+![GitHub language count](https://img.shields.io/github/languages/count/Duncan1106/LA?color=lime&label=languages&logo=gray)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Duncan1106/LA)
+![GitHub Repo stars](https://img.shields.io/github/stars/Duncan1106/LA?style=plastic)
