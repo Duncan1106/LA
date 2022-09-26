@@ -18,7 +18,7 @@ some scripts and script ideas for automations
     -   file gets copied to specifiedd loactions and gets renamed accordingly
     -   archive original file to year/month structure
 
-- "Achrivierungsordnerstrukturgeneratorscript"
+- "Archivierungsordnerstrukturgeneratorscript"
     -   user promt to get the year to create the year/month structure
     -   checks if the year user inputed is in the future or the current year
 ## Change Following according to your needs
