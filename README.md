@@ -45,3 +45,4 @@ try and catch errors for easy user debug and StackTree output if error accoured
 ## Security
 
 [![PSScriptAnalyzer](https://github.com/Duncan1106/LA/actions/workflows/powershell.yml/badge.svg)](https://github.com/Duncan1106/LA/actions/workflows/powershell.yml)
+[![Codacy Security Scan](https://github.com/Duncan1106/LA/actions/workflows/codacy.yml/badge.svg)](https://github.com/Duncan1106/LA/actions/workflows/codacy.yml)
