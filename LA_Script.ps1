@@ -110,13 +110,13 @@ Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
 Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
 Write-Host "Q: Q um das Skript zu beenden."
 
-$input = (Read-Host "Bitte waehle: ").ToUpper()
+$user_input = (Read-Host "Bitte waehle: ").ToUpper()
 
-switch ($input)
+switch ($user_input)
 {
     '1' {VersandAndHistory}
     '2' {NewHistoryDirectory}
     'Q' {Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White}
-    Default {Write-Host "`nDeine Wahl $input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
+    Default {Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
 }
 pause
