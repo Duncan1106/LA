@@ -114,9 +114,9 @@ $user_input = (Read-Host "Bitte waehle: ").ToUpper()
 
 switch ($user_input)
 {
-    '1' {VersandAndHistory}
-    '2' {NewHistoryDirectory}
-    'Q' {Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White}
-    Default {Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White}
+    '1' { VersandAndHistory }
+    '2' { NewHistoryDirectory }
+    'Q' { Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White }
+    Default { Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White }
 }
 pause
