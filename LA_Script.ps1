@@ -63,7 +63,7 @@ Function NewHistoryDirectory {
     ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
     write-host "`nBitte gib ein Jahr an, fuer das die Ordnerstruktur aufgebaut werden soll"
     $year = (Read-Host "Input: ").ToUpper()
-    
+
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
     $Directory = ".\history"
 
@@ -82,7 +82,7 @@ Function NewHistoryDirectory {
 
     ## Wenn die Benutzereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
     else {
-        Try{
+        Try {
             New-Item -Path $Directory -Name $year -ItemType "directory"
             $subdir = "$Directory\$year"
             For ($i=1; $i -lt 13; $i++) {
