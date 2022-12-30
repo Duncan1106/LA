@@ -9,18 +9,18 @@ some scripts and script ideas for automations
 ## Features
 
 - Simple GUI in PowerShell
-    -   "Versand und Archivierungsscript"  
-    -   "Achrivierungsordnerstrukturgeneratorscript"
-    -   quit option
+    - "Versand und Archivierungsscript"  
+    - "Achrivierungsordnerstrukturgeneratorscript"
+    - quit option
 
 - "Versand und Archivierungsscript"
-    -   user prompt for deletion of original file
-    -   file gets copied to specifiedd loactions and gets renamed accordingly
-    -   archive original file to year/month structure
+    - user prompt for deletion of original file
+    - file gets copied to specifiedd loactions and gets renamed accordingly
+    - archive original file to year/month structure
 
 - "Archivierungsordnerstrukturgeneratorscript"
-    -   user promt to get the year to create the year/month structure
-    -   checks if the year user inputed is in the future or the current year
+    - user promt to get the year to create the year/month structure
+    - checks if the year user inputed is in the future or the current year
 ## Change Following according to your needs
 
 ```bash
