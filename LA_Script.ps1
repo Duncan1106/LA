@@ -12,36 +12,28 @@ Write-Host "====================================" -ForegroundColor Green
 $ErrorActionPreference = "Stop"
 
 Function VersandAndHistory {
-    write-host "`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
-    $deleteoption = (Read-Host)
-    ## Verzeichnisse
-    # Verzeichnis in der die IST_RUECK_VOM...Datei von der Abholung liegt
-    $Directory = ".\Versand\FTP\"## Verzeichnis muss fuer die eigenen Beduerfnisse angepasst werden
-    # verzeichnis, fuer LISSA
-    $RLDir =".\RL\Einnahmen\" ## Verzeichnis muss fuer die eigenen Beduerfnisse angepasst werden
-    
-    ## Dateien
-    #tatsaechliche Datei, es ist von auszugehen, dass immer nur eine Datei in dem Verzeichnis vorliegt
+    # Define variables
+    $deleteoption = $null
+    $Directory = ".\Versand\FTP\"
+    $RLDir = ".\RL\Einnahmen\"
     $textfile = Get-ChildItem -Path $Directory
-    
-    # kuerzen des dateinames auf Format yyyymmddhhmmss(kompletter Zeitstempel)
-    $shorted=$textfile.Name.Substring(14,6)
-    # erhalte das Jahr fuer die Einsortierung in die dafuer vorhandene Ordnerstruktur
+    $shorted = $textfile.Name.Substring(14,6)
     $year = $shorted.Substring(0,4)
-    # selbes wie bei Jahr nur fuer Monat
     $month = $shorted.Substring(4,2)
-    # Verzeihnis, in das die alten Rechenlaeufe kommen
-    ## Verzeichnis muss fuer die eigenen Beduerfnisse angepasst werden und am Ende $year/$month passend zu Ihren Anforderungen angefuegt werden
     $historyDir = ".\history\$year\$month\" 
 
-    ## Ausfuehrung
+    # Prompt user to delete original file
+    write-host "`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
+    $deleteoption = (Read-Host)
+
+    # Try block to handle errors
     Try {
         # Archivierung der tatsaechlichen Rechenlaufsdatei
         Copy-Item $Directory\$textfile $historyDir
         # kopieren des Rechenlaufes in den fuer LISSA verstaendliche Dateinamen
         Copy-Item $Directory\$textfile $RLDir\IST_RUECK_LA02_V.txt
 
-        ## Optionale Loeschung der Ursprungsdatei
+        # Optionally delete original file
         if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
             Write-Host "Erfolgreiche Loeschung der Originaldatei"
@@ -50,7 +42,7 @@ Function VersandAndHistory {
             Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
         }
         write-host "Versand und Archivierungs Skript ausgefuehrt!"
-        }
+    }
     Catch {
         Write-Host "`n"
         Write-Host $_.Exception.Message -ForegroundColor Red
@@ -60,29 +52,12 @@ Function VersandAndHistory {
 }
 
 Function NewHistoryDirectory {
-    ## User-Input um das Jahr herauszufinden, fuer das das Verzeichnis erstellt werden soll
-    write-host "`nBitte gib ein Jahr an, fuer das die Ordnerstruktur aufgebaut werden soll"
-    $year = (Read-Host "Input: ").ToUpper()
 
     ## Verzeichnis in dem die ganzen alten Dateien liegen 
     $Directory = ".\history"
 
-    $dYear= (Get-Date).AddMonths(-1).ToString("yyyy")
-    $dyear2 = [int]$dYear + 1 
-
-    ##Benutzer Eingaben Ueberpruefung
-    # Ueberpruefen, ob das angegebene Jahr kleiner als oder gleich dem aktuellen Jahr ist
-    if ($year -lt $dYear) {
-        write-Host "Bitte gib ein Jahr ein, das in der Zukunft liegt, vergangene Jahre existieren schon"
-    }
-    ## Ueberpruefen, ob das angebenen Jahr ein valides Jahr ist, heisst gleich 4 Zeichen lang ist
-    if($year.Length -cne 4) {
-        write-Host "Bitte gib ein valides Jahr ein, nicht $year, zum Beispiel: $dyear, $dyear2, ..."
-    }
-
     ## Wenn die Benutzereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
-    else {
-        Try {
+    Try {
             New-Item -Path $Directory -Name $year -ItemType "directory"
             $subdir = "$Directory\$year"
             For ($i=1; $i -lt 13; $i++) {
@@ -96,27 +71,76 @@ Function NewHistoryDirectory {
             }
             write-host "Archivierungsstrukturskript ausgefuehrt!"
         }
-        Catch {
+    Catch {
             Write-Host "`n"
             Write-Host $_.Exception.Message -ForegroundColor Red
             Write-Host $_.ScriptStackTrace
+    }
+}
+
+function Main {
+    $flag = $false
+    while ($true) {
+        Write-Host "`n================== LA Skript ==================" -ForegroundColor Cyan
+        Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
+        Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
+        Write-Host "q: q um das Skript zu beenden."
+
+        $user_input = (Read-Host "Bitte waehle: ").ToUpper()
+
+        switch ($user_input)
+        {
+            '1' { VersandAndHistory }
+            '2' { 
+                $validYear = $false
+                $promptCount = 0
+                $year = 0
+                while (!$validYear -and $promptCount -lt 3)
+                {
+                    $year = (Read-Host "Please enter a year: ")
+                    $dYear = $currentYear = (Get-Date).Year
+
+                    # Check if the entered year is not in the past
+                    if ($year -lt $dYear)
+                    {
+                        write-Host "Please enter a year that is not in the past."
+                    }
+                    # Check if the entered year is a 4-digit year
+                    elseif ($year.Length -cne 4)
+                    {
+                        write-Host "Please enter a valid year, not $year, for example: $dyear, $($dyear + 1), ..."
+                    }
+                    else
+                    {
+                        $validYear = $true
+                    }
+                    $promptCount++
+                }
+                if ($validYear)
+                {
+                    NewHistoryDirectory $year
+                }
+                else
+                {
+                    Write-Host "You have exceeded the maximum number of attempts to enter a valid year."
+                }
+            }
+            'q' { 
+                Write-Host "Das Skript wurde beendet" -BackgroundColor Red -ForegroundColor White
+                $flag = $true
+                break
+            }
+            Default { 
+                Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White 
+                break
+            }
+
+        }
+        if ($flag) {
+            break;
         }
     }
 }
 
-## GUI fuer den Benutzer
-Write-Host "`n================== LA Skript ==================" -ForegroundColor Cyan
-Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
-Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
-Write-Host "Q: Q um das Skript zu beenden."
 
-$user_input = (Read-Host "Bitte waehle: ").ToUpper()
-
-switch ($user_input)
-{
-    '1' { VersandAndHistory }
-    '2' { NewHistoryDirectory }
-    'Q' { Write-Host "Das Skript wurde beednet" -BackgroundColor Red -ForegroundColor White }
-    Default { Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White }
-}
-pause
+Main
