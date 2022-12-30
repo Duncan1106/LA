@@ -47,7 +47,7 @@ Function VersandAndHistory {
         Write-Output"`n"
         Write-Output$_.Exception.Message -ForegroundColor Red
         Write-Output$_.ScriptStackTrace
-        Write-Output""
+        Write-Output"`n"
     }
 }
 
