@@ -2,11 +2,11 @@
 ##   @Author Duncan1106   ##
 ## ====================== ##
 
-Write-Host "====================================" -ForegroundColor Green
-Write-Host "====== LA-Automation Skripts =======" -ForegroundColor Green
-Write-Host "====================================" -ForegroundColor Green
-Write-Host "========== by Duncan1106 ===========" -ForegroundColor Green
-Write-Host "====================================" -ForegroundColor Green
+Write-Output"====================================" -ForegroundColor Green
+Write-Output"====== LA-Automation Skripts =======" -ForegroundColor Green
+Write-Output"====================================" -ForegroundColor Green
+Write-Output"========== by Duncan1106 ===========" -ForegroundColor Green
+Write-Output"====================================" -ForegroundColor Green
 
 # Error catching
 $ErrorActionPreference = "Stop"
@@ -20,10 +20,10 @@ Function VersandAndHistory {
     $shorted = $textfile.Name.Substring(14,6)
     $year = $shorted.Substring(0,4)
     $month = $shorted.Substring(4,2)
-    $historyDir = ".\history\$year\$month\" 
+    $historyDir = ".\history\$year\$month\"
 
     # Prompt user to delete original file
-    write-host "`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
+    Write-Output"`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
     $deleteoption = (Read-Host)
 
     # Try block to handle errors
@@ -36,24 +36,24 @@ Function VersandAndHistory {
         # Optionally delete original file
         if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
-            Write-Host "Erfolgreiche Loeschung der Originaldatei"
+            Write-Output"Erfolgreiche Loeschung der Originaldatei"
         }
         else {
-            Write-Host "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
+            Write-Output"Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
         }
-        write-host "Versand und Archivierungs Skript ausgefuehrt!"
+        Write-Output"Versand und Archivierungs Skript ausgefuehrt!"
     }
     Catch {
-        Write-Host "`n"
-        Write-Host $_.Exception.Message -ForegroundColor Red
-        Write-Host $_.ScriptStackTrace
-        Write-Host ""
+        Write-Output"`n"
+        Write-Output$_.Exception.Message -ForegroundColor Red
+        Write-Output$_.ScriptStackTrace
+        Write-Output""
     }
 }
 
 Function NewHistoryDirectory {
 
-    ## Verzeichnis in dem die ganzen alten Dateien liegen 
+    ## Verzeichnis in dem die ganzen alten Dateien liegen
     $Directory = ".\history"
 
     ## Wenn die Benutzereingabe korrekt war, erstellen des Jahresverzeichnisses, mit den Monaten als Unterordner, von 01 bis 12 durchnummeriert
@@ -65,33 +65,33 @@ Function NewHistoryDirectory {
                     $zero2nine = "0$i"
                     New-Item -Path $subdir -Name $zero2nine -ItemType "directory"
                 }
-                else{    
+                else{
                     New-Item -Path $subdir -Name $i -ItemType "directory"
                 }
             }
-            write-host "Archivierungsstrukturskript ausgefuehrt!"
+            Write-Output"Archivierungsstrukturskript ausgefuehrt!"
         }
     Catch {
-            Write-Host "`n"
-            Write-Host $_.Exception.Message -ForegroundColor Red
-            Write-Host $_.ScriptStackTrace
+            Write-Output"`n"
+            Write-Output$_.Exception.Message -ForegroundColor Red
+            Write-Output$_.ScriptStackTrace
     }
 }
 
 function Main {
     $flag = $false
     while ($true) {
-        Write-Host "`n================== LA Skript ==================" -ForegroundColor Cyan
-        Write-Host "1: 1 um das Versand und Archivierungs Skript auszufuehren"
-        Write-Host "2: 2 um das Archivierungsstrukturskript auszufuehren"
-        Write-Host "q: q um das Skript zu beenden."
+        Write-Output"`n================== LA Skript ==================" -ForegroundColor Cyan
+        Write-Output"1: 1 um das Versand und Archivierungs Skript auszufuehren"
+        Write-Output"2: 2 um das Archivierungsstrukturskript auszufuehren"
+        Write-Output"q: q um das Skript zu beenden."
 
         $user_input = (Read-Host "Bitte waehle: ").ToUpper()
 
         switch ($user_input)
         {
             '1' { VersandAndHistory }
-            '2' { 
+            '2' {
                 $validYear = $false
                 $promptCount = 0
                 $year = 0
@@ -103,12 +103,12 @@ function Main {
                     # Check if the entered year is not in the past
                     if ($year -lt $dYear)
                     {
-                        write-Host "Please enter a year that is not in the past."
+                        Write-Output"Please enter a year that is not in the past."
                     }
                     # Check if the entered year is a 4-digit year
                     elseif ($year.Length -cne 4)
                     {
-                        write-Host "Please enter a valid year, not $year, for example: $dyear, $($dyear + 1), ..."
+                        Write-Output"Please enter a valid year, not $year, for example: $dyear, $($dyear + 1), ..."
                     }
                     else
                     {
@@ -122,16 +122,16 @@ function Main {
                 }
                 else
                 {
-                    Write-Host "You have exceeded the maximum number of attempts to enter a valid year."
+                    Write-Output"You have exceeded the maximum number of attempts to enter a valid year."
                 }
             }
-            'q' { 
-                Write-Host "Das Skript wurde beendet" -BackgroundColor Red -ForegroundColor White
+            'q' {
+                Write-Output"Das Skript wurde beendet" -BackgroundColor Red -ForegroundColor White
                 $flag = $true
                 break
             }
-            Default { 
-                Write-Host "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White 
+            Default {
+                Write-Output"`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White
                 break
             }
 
@@ -141,6 +141,5 @@ function Main {
         }
     }
 }
-
 
 Main
