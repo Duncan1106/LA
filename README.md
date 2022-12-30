@@ -24,13 +24,13 @@ some scripts and script ideas for automations
 ## Change Following according to your needs
 
 ```bash
-    line 19: $Directory = ".\Versand\FTP\"
+    line 17: $Directory = ".\Versand\FTP\"
 
-    line 21: $RLDir =".\RL\Einnahmen\"
+    line 18: $RLDir =".\RL\Einnahmen\"
     
-    line 35: $historyDir = ".\history\$year\$month\" 
+    line 23: $historyDir = ".\history\$year\$month\" 
 
-    line 68: $Directory = ".\history"
+    line 57: $Directory = ".\history"
 ```
     
 ## Optimizations
