@@ -2,11 +2,11 @@
 ##   @Author Duncan1106   ##
 ## ====================== ##
 
-Write-Output"====================================" -ForegroundColor Green
-Write-Output"====== LA-Automation Skripts =======" -ForegroundColor Green
-Write-Output"====================================" -ForegroundColor Green
-Write-Output"========== by Duncan1106 ===========" -ForegroundColor Green
-Write-Output"====================================" -ForegroundColor Green
+Write-Output "====================================" -ForegroundColor Green
+Write-Output "====== LA-Automation Skripts =======" -ForegroundColor Green
+Write-Output "====================================" -ForegroundColor Green
+Write-Output "========== by Duncan1106 ===========" -ForegroundColor Green
+Write-Output "====================================" -ForegroundColor Green
 
 # Error catching
 $ErrorActionPreference = "Stop"
@@ -23,7 +23,7 @@ Function VersandAndHistory {
     $historyDir = ".\history\$year\$month\"
 
     # Prompt user to delete original file
-    Write-Output"`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
+    Write-Output "`nSoll die Originaldatei geloescht werden? Y zum Loeschen, N zum Behalten"
     $deleteoption = (Read-Host)
 
     # Try block to handle errors
@@ -36,18 +36,18 @@ Function VersandAndHistory {
         # Optionally delete original file
         if ($deleteoption -cmatch "y" -or $deleteoption -cmatch "Y") {
             Remove-Item -Path $Directory\$textfile -Force
-            Write-Output"Erfolgreiche Loeschung der Originaldatei"
+            Write-Output "Erfolgreiche Loeschung der Originaldatei"
         }
         else {
-            Write-Output"Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
+            Write-Output "Die Originaldatei wurde NICHT geloescht. Vor der naechsten Ausfuehrung dieses Skriptes bitte loeschen"
         }
-        Write-Output"Versand und Archivierungs Skript ausgefuehrt!"
+        Write-Output "Versand und Archivierungs Skript ausgefuehrt!"
     }
     Catch {
-        Write-Output"`n"
-        Write-Output$_.Exception.Message -ForegroundColor Red
-        Write-Output$_.ScriptStackTrace
-        Write-Output"`n"
+        Write-Output "`n"
+        Write-Output $_.Exception.Message -ForegroundColor Red
+        Write-Output $_.ScriptStackTrace
+        Write-Output "`n"
     }
 }
 
@@ -69,22 +69,22 @@ Function NewHistoryDirectory {
                     New-Item -Path $subdir -Name $i -ItemType "directory"
                 }
             }
-            Write-Output"Archivierungsstrukturskript ausgefuehrt!"
+            Write-Output "Archivierungsstrukturskript ausgefuehrt!"
         }
     Catch {
-            Write-Output"`n"
-            Write-Output$_.Exception.Message -ForegroundColor Red
-            Write-Output$_.ScriptStackTrace
+            Write-Output "`n"
+            Write-Output $_.Exception.Message -ForegroundColor Red
+            Write-Output $_.ScriptStackTrace
     }
 }
 
 function Main {
     $flag = $false
     while ($true) {
-        Write-Output"`n================== LA Skript ==================" -ForegroundColor Cyan
-        Write-Output"1: 1 um das Versand und Archivierungs Skript auszufuehren"
-        Write-Output"2: 2 um das Archivierungsstrukturskript auszufuehren"
-        Write-Output"q: q um das Skript zu beenden."
+        Write-Output "`n================== LA Skript ==================" -ForegroundColor Cyan
+        Write-Output "1: 1 um das Versand und Archivierungs Skript auszufuehren"
+        Write-Output "2: 2 um das Archivierungsstrukturskript auszufuehren"
+        Write-Output "q: q um das Skript zu beenden."
 
         $user_input = (Read-Host "Bitte waehle: ").ToUpper()
 
@@ -103,12 +103,12 @@ function Main {
                     # Check if the entered year is not in the past
                     if ($year -lt $dYear)
                     {
-                        Write-Output"Please enter a year that is not in the past."
+                        Write-Output "Please enter a year that is not in the past."
                     }
                     # Check if the entered year is a 4-digit year
                     elseif ($year.Length -cne 4)
                     {
-                        Write-Output"Please enter a valid year, not $year, for example: $dyear, $($dyear + 1), ..."
+                        Write-Output "Please enter a valid year, not $year, for example: $dyear, $($dyear + 1), ..."
                     }
                     else
                     {
@@ -122,16 +122,16 @@ function Main {
                 }
                 else
                 {
-                    Write-Output"You have exceeded the maximum number of attempts to enter a valid year."
+                    Write-Output "You have exceeded the maximum number of attempts to enter a valid year."
                 }
             }
             'q' {
-                Write-Output"Das Skript wurde beendet" -BackgroundColor Red -ForegroundColor White
+                Write-Output "Das Skript wurde beendet" -BackgroundColor Red -ForegroundColor White
                 $flag = $true
                 break
             }
             Default {
-                Write-Output"`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White
+                Write-Output "`nDeine Wahl $user_input, ist nicht gueltig. Bitte starte das Skript neu." -BackgroundColor Red -ForegroundColor White
                 break
             }
 
